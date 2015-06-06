@@ -46,3 +46,9 @@ Add in the following lines in `nix.conf`:
 ```
 binary-caches = http://zalora-public-nix-cache.s3-website-ap-southeast-1.amazonaws.com/ http://cache.nixos.org/ http://hydra.nixos.org/
 ```
+
+## Let's install something
+
+```
+$ nix-env -i hello
+```
