@@ -1,6 +1,6 @@
 # Specifics of Nix package manager on Mac OS X 10.10 (Darwin)
 
-Run:
+## Run
 
 ```
 curl https://nixos.org/nix/install | sh
@@ -12,7 +12,9 @@ rm -rf channels
 ln -s ~/nixpkgs nixpkgs
 ```
 
-Check:
+Notice that I am using Daniel Peebles' fork of https://github.com/NixOS/nixpkgs.  This is because the current head of NixOS' nixpkgs is broken for darwin (Mac OS X). Daniel's `pure-darwin` fork contains all the necessary patches to build on Darwin correctly.  This is the current state as of 6th June 2015.  When a merge back into NixOS' nixpkgs happens, we can then switch to using that our machine.
+
+## Check
 
 ```
 nix-env -q
