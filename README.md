@@ -24,3 +24,23 @@ We should see these listed:
 cacert-20140715
 nix-1.8
 ```
+
+Also, our `$NIX_PATH` should reflect that the `nixpkgs` path is available.
+
+```
+$ echo $NIX_PATH
+nixpkgs=/Users/calvin/.nix-defexpr/channels/nixpkgs
+```
+
+## Use binary caches?
+
+```
+sudo mkdir /etc/nix
+sudo vim /etc/nix/nix.conf
+```
+
+Add in the following lines in `nix.conf`:
+
+```
+binary-caches = http://zalora-public-nix-cache.s3-website-ap-southeast-1.amazonaws.com/ http://cache.nixos.org/ http://hydra.nixos.org/
+```
