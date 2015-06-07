@@ -52,3 +52,45 @@ binary-caches = http://zalora-public-nix-cache.s3-website-ap-southeast-1.amazona
 ```
 $ nix-env -i hello
 ```
+
+## Haskell
+
+To search for haskell packages, we use the `-A` flag.  Like this:
+
+```
+$ nix-env -qaP -A nixpkgs.haskellPackages | grep cabal-install
+nixpkgs.haskellPackages.cabal-install                                cabal-install-1.22.4.0
+nixpkgs.haskellPackages.cabal-install-bundle                         cabal-install-bundle-1.18.0.2.1
+nixpkgs.haskellPackages.cabal-install-ghc72                          cabal-install-ghc72-0.10.4
+nixpkgs.haskellPackages.cabal-install-ghc74                          cabal-install-ghc74-0.10.4
+```
+
+Simply querying with `nix-env -qaP` will not yield any result because there are too many sub-packages to be included into the top level search path. So, we use the `-A` flag to specify the attribute path where we begin our search and pipe the results of all the packages in that sub-attribute path for filtering by `grep`.
+
+```
+$ nix-env -qaP -A nixpkgs.haskellPackages | grep cabal2nix
+nixpkgs.haskellPackages.cabal2nix                                    cabal2nix-20150531
+```
+
+`cabal2nix` and `cabal-install` are the programs we need in our nix user environment. So let's get them installed first:
+
+```
+$ nix-env -iA nixpkgs.haskellPackages.cabal-install
+...
+$ nix-env -iA nixpkgs.haskellPackages.cabal2nix
+...
+
+```
+
+Once done, let's review what we have in our Mac OS X's nix user environment:
+
+```
+$ nix-env -q
+cabal-install-1.22.3.0
+cabal2nix-20150531
+cacert-20140715
+hello-2.10
+nix-1.8
+```
+
+
